@@ -6,7 +6,7 @@ const Input = (props: InputDataObjects) => {
       <p typeof={props.name} className="text-slate-100 text-left">
         {props.name}
       </p>
-      <input className="pt-1 pb-1 pl-2" type={props.name} id={props.id} placeholder={props.name} />
+      <input className="pt-1 pb-1 pl-2 bg-slate-900 text-gray-900" type={props.name} id={props.id} placeholder={props.name} />
     </div>
   );
 };

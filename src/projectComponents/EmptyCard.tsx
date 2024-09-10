@@ -1,4 +1,4 @@
-import { Card } from "@/components/ui/card";
+// import { Card } from "@/components/ui/card";
 import { ReactNode } from "react";
 
 interface MyComponentProps {
@@ -7,9 +7,9 @@ interface MyComponentProps {
 
 const P_EmptyCard: React.FC<MyComponentProps> = ({ children }) => {
   return (
-    <Card className="m-10 border-x-gray-300 bg-gray-600 h-3/4 p-8">
+    <div className="m-10 border-x-gray-300 bg-gray-600 h-3/4 p-8">
       <>{children}</>
-    </Card>
+    </div>
   );
 };
 
