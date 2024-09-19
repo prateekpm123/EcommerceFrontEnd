@@ -3,9 +3,9 @@ class BaseHtmlDataObject {
   public id: string;
   public name: string;
   public className?: string;
-  public onClick?: () => void;
+  public onClick?: () => Promise<null>;
 
-  constructor(id: string, name: string, className?: string, onClick?: ()=>void) {
+constructor(id: string, name: string, className?: string, onClick?: ()=>Promise<null>) {
     this.id = id;
     this.name = name;
     this.className = className;

@@ -1,4 +1,4 @@
-import CanvasComp from "./CanvasComp";
+import CanvasComp from "../projectComponents/CanvasComp";
 
 function NodeSection() {
     return(
