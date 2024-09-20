@@ -8,13 +8,16 @@ import { AxiosError, AxiosResponse } from "node_modules/axios/index.ts";
 import SignUpErrorResponseData from "@/dtos/SignUpErrorResponseData";
 import SignUpSuccessfulResponse from "@/dtos/SignUpSuccessfulResponse";
 import { UserCreatedDto } from "@/dtos/UserCreatedDto";
-
+import { useNavigate } from "react-router-dom";
+import { useProjectContext } from "@/contexts/ProjectContext";
 
 function SignUp() {
   const emailRef = useRef<HTMLInputElement>(null);
   const passRef = useRef<HTMLInputElement>(null);
   const userAuthController: UserAuthenticationController =
     new UserAuthenticationController();
+  const navigate = useNavigate();
+  const {setUserContext} = useProjectContext();
 
   // const handleSignUp: Promise<null> = async (param1: object, param2: object) => {
   const handleSignUp = async (
@@ -39,13 +42,16 @@ function SignUp() {
               const userData: UserCreatedDto = responseData.data;
               alert("Sign Up successful");
               // emailRef.current?.;
+              navigate("/welcome");
+              setUserContext(userData);
               console.log(userData);
             })
             .catch((errorReason: AxiosError) => {
-              if(errorReason.response) {
-                const data = errorReason.response.data as SignUpErrorResponseData;
+              if (errorReason.response) {
+                const data = errorReason.response
+                  .data as SignUpErrorResponseData;
                 alert(data.message);
-                return data.message;           
+                return data.message;
               }
             });
           console.log(response);
