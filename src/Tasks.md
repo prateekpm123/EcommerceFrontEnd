@@ -1,6 +1,6 @@
 ### To do
 
-1. Make the sign up page talk to my User Authentication service
+1. [x] Make the sign up page talk to my User Authentication service
     1. Figure out, if you need to create a controller class in between or directly a service class, which you can use to talk to the User authentication service. ( I think making a controller seems sensible ).
     2. Make the controller class, make the service class and then call the api.
 2. Nodes behaviour
