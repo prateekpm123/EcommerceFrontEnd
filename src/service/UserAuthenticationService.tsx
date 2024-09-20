@@ -15,12 +15,12 @@ class UserAuthenticationService {
     
   }
 
-  static baseUrl: string = "http://localhost:8080/auth/signIn";
+  static baseUrl: string = "http://localhost:8080";
 
-  
+
   async signIn(signupBody: SignUpDto): Promise<object> {
     const response = await axios.post(
-      "http://localhost:8080/auth/signIn",
+      UserAuthenticationService.baseUrl + "/auth/signIn",
       signupBody,
       {
         headers: {
@@ -29,6 +29,16 @@ class UserAuthenticationService {
       }
     );
     return response;
+  }
+
+  async userAuthenticationHealthCheck(): Promise<boolean> {
+    const response = await axios.get(
+      UserAuthenticationService.baseUrl + "/auth/status"
+    )
+    if(response.status) {
+      return true;
+    }
+    return false;
   }
 }
 

@@ -1,8 +1,8 @@
 ### To do
 
 1. [x] Make the sign up page talk to my User Authentication service
-    1. Figure out, if you need to create a controller class in between or directly a service class, which you can use to talk to the User authentication service. ( I think making a controller seems sensible ).
-    2. Make the controller class, make the service class and then call the api.
+    1. [x] Figure out, if you need to create a controller class in between or directly a service class, which you can use to talk to the User authentication service. ( I think making a controller seems sensible ).
+    2. [x] Make the controller class, make the service class and then call the api.
 2. Nodes behaviour
     1. Once the User Service is up and running in the backend, make the node glow.
     2. If an api call is going to the User Authentication service make an animation on the canvas like a lighting or something show that a api call was made to the User authentication.

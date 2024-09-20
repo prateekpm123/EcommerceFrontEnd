@@ -2,10 +2,18 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import GlowingBox from "@/projectComponents/GlowingBox";    
+import { useProjectContext } from "@/contexts/ProjectContext";
 
 function CanvasComp() {
+  const projectContext = useProjectContext();
+   let glowingEffect: number;
+  if(projectContext.microServicesHealthStatusContext?.isUserAuthenticationServiceUp) {
+    glowingEffect = 0.9;
+  } else {
+    glowingEffect = 0.1;
+  }
   return (
-    <Canvas className="h-fit">
+    <Canvas className="h-fit"> 
       {/* Ambient Light */}
       <ambientLight intensity={0.5} />
 
@@ -45,10 +53,10 @@ function CanvasComp() {
       />
 
       {/* First Glowing Box */}
-      <GlowingBox position={[-2, 0, 0]} />
+      <GlowingBox position={[-2, 0, 0]} glowingEffect={glowingEffect} />
 
       {/* Second Glowing Box */}
-      <GlowingBox position={[2, 0, 0]} />
+      <GlowingBox position={[2, 0, 0]} glowingEffect={glowingEffect}/>
     </Canvas>
   );
 }
