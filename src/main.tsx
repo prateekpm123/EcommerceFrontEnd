@@ -4,12 +4,13 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 import { ProjectContextProvider } from "./contexts/ProjectContext.tsx";
+// import App from "./projectComponents/LightningEffect.tsx";
 // import MyAppRouter from "./RouterApp.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ProjectContextProvider>
-      <App />
+      <App/>
     </ProjectContextProvider>
   </StrictMode>
 );

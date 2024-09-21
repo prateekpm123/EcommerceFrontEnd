@@ -18,8 +18,10 @@ function NodeSection() {
       const serviceStatus = await checkOnMicroServices()
       projectContext.setMicroServicesHealthStatusContext(serviceStatus);
     };
-    getServicesStatus();
-  }, []);
+    setInterval(() => {
+      getServicesStatus();
+    },1000);
+    }, []);
   return (
     <div
       className="h-1/3 w-full flex bg-slate-700 border-solid border-y-2 border-y-slate-500 "
