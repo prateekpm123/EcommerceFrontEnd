@@ -2,6 +2,8 @@
 import { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import GlowingBox from './GlowingBox';
+import { useProjectContext } from '@/contexts/ProjectContext';
 
 // Define the props type for LightningEffect
 export interface LightningEffectProps {
@@ -46,22 +48,27 @@ function LightningEffect({ start, end }: LightningEffectProps) {
   return (
     <line ref={ref}>
       <bufferGeometry />
-      <lineBasicMaterial color="white" linewidth={2} />
+      <lineBasicMaterial color="white" linewidth={10} />
     </line>
   );
 }
 
 // Define the Scene component
-export function Scene() {
-  const sourcePos = new THREE.Vector3(0, -1, 0); // Start from the bottom
-  const targetPos = new THREE.Vector3(0, 1, 0);  // Target cube position
-
+export function LightningScene() {
+  const sourcePos = new THREE.Vector3(0, 0, 0); // Start from the bottom
+  const targetPos = new THREE.Vector3(0, 5, 0);  // Target cube position
+  const projectContext = useProjectContext();
+  let glowingEffect: number;
+  if(projectContext.microServicesHealthStatusContext?.isUserAuthenticationServiceUp) {
+    glowingEffect = 0.9;
+  } else {
+    glowingEffect = 0.1;
+  }
   return (
     <>
       {/* Target Cube */}
       <mesh position={targetPos}>
-        <boxGeometry args={[0.2, 0.2, 0.2]} />
-        <meshStandardMaterial color="blue" />
+        <GlowingBox position={[0, 0, 0]} glowingEffect={glowingEffect} />
       </mesh>
 
       {/* Lightning Effect */}
@@ -69,8 +76,7 @@ export function Scene() {
 
       {/* Source (Start Point for Lightning) */}
       <mesh position={sourcePos}>
-        <boxGeometry args={[0.2, 0.2, 0.2]} />
-        <meshStandardMaterial color="red" />
+        <GlowingBox position={[0, 0, 0]} glowingEffect={glowingEffect}/>
       </mesh>
     </>
   );

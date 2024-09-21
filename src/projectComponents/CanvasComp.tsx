@@ -1,23 +1,22 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
-import GlowingBox from "@/projectComponents/GlowingBox";    
-import { useProjectContext } from "@/contexts/ProjectContext";
-import * as THREE from 'three';
-import LightningEffect, { Scene } from "./LightningEffect";
+// import { useProjectContext } from "@/contexts/ProjectContext";
+// import * as THREE from 'three';
+import { LightningScene } from "./LightningEffect";
 
 
 function CanvasComp() {
-  const projectContext = useProjectContext();
-  let glowingEffect: number;
-  const sourcePos = new THREE.Vector3(0, -1, 0); // Start from the bottom
-  const targetPos = new THREE.Vector3(0, 1, 0);  // Target cube position
+  // const projectContext = useProjectContext();
+  // let glowingEffect: number;
+  // const sourcePos = new THREE.Vector3(0, -1, 0); // Start from the bottom
+  // const targetPos = new THREE.Vector3(0, 1, 0);  // Target cube position
 
-  if(projectContext.microServicesHealthStatusContext?.isUserAuthenticationServiceUp) {
-    glowingEffect = 0.9;
-  } else {
-    glowingEffect = 0.1;
-  }
+  // if(projectContext.microServicesHealthStatusContext?.isUserAuthenticationServiceUp) {
+  //   glowingEffect = 0.9;
+  // } else {
+  //   glowingEffect = 0.1;
+  // }
   return (
     <Canvas className="h-fit"> 
       {/* Ambient Light */}
@@ -58,14 +57,7 @@ function CanvasComp() {
         rotateSpeed={0.5}
       />
 
-      {/* First Glowing Box */}
-      <GlowingBox position={[-2, 0, 0]} glowingEffect={glowingEffect} />
-
-      {/* Second Glowing Box */}
-      <GlowingBox position={[2, 0, 0]} glowingEffect={glowingEffect}/>
-
-      {/* <LightningEffect start={sourcePos} end={targetPos}></LightningEffect> */}
-      <Scene></Scene>
+      <LightningScene></LightningScene>
     </Canvas>
   );
 }
