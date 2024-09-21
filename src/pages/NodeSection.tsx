@@ -1,11 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CanvasComp from "../projectComponents/CanvasComp";
 import UserAuthenticationController from "@/controller/UserAuthenticationController";
 import { MicroServicesHealthStatus } from "@/models/MicroServicesHealthStatus";
 import { useProjectContext } from "@/contexts/ProjectContext";
+import { NodesPositions } from "@/projectComponents/LightningScene";
 
 function NodeSection() {
-    const projectContext = useProjectContext();
+  const projectContext = useProjectContext();
+  const [showLightning, setShowLightning] = useState(true);
 
   const checkOnMicroServices = async (): Promise<MicroServicesHealthStatus> => {
     const userAuthController: UserAuthenticationController = new UserAuthenticationController();
@@ -13,14 +15,27 @@ function NodeSection() {
     return microServicesHealthStaus;
   };
 
+  // On Node Section render we are doing a health check on the backend services
   useEffect(() => {
     const getServicesStatus = async () => {
+      const sourcePos = NodesPositions.CLIENT;
+      const targetPos = NodesPositions.USERAUTHENTICATION;
+      setShowLightning(true);
+      projectContext.setLightningSceneInputs({sourcePos, targetPos, showLightning: [showLightning, setShowLightning]});
+      setShowLightning(false);
       const serviceStatus = await checkOnMicroServices()
       projectContext.setMicroServicesHealthStatusContext(serviceStatus);
     };
-    setInterval(() => {
+
+    getServicesStatus();
+
+    // Making periodic health checks
+    const frequentHealthCheck = setInterval(() => {
       getServicesStatus();
     },1000);
+
+    return () => clearInterval(frequentHealthCheck);
+
     }, []);
   return (
     <div

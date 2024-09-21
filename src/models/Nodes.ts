@@ -1,0 +1,7 @@
+export enum Nodes {
+    USERAUTHENTICATION,
+    PRODUCTSERVICE, 
+    ORDERSERVICE,
+    PAYMENTSERVICE,
+    CLIENT
+}

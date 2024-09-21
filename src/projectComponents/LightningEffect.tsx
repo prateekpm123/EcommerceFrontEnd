@@ -2,16 +2,16 @@
 import { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import GlowingBox from './GlowingBox';
-import { useProjectContext } from '@/contexts/ProjectContext';
 
 // Define the props type for LightningEffect
 export interface LightningEffectProps {
   start: THREE.Vector3;
   end: THREE.Vector3;
+  isAnimating: boolean;
+  onAnimationComplete: () => void;
 }
 
-function LightningEffect({ start, end }: LightningEffectProps) {
+function LightningEffect({ start, end, isAnimating, onAnimationComplete }: LightningEffectProps) {
   const ref = useRef<THREE.Line | null>(null);
   const [progress, setProgress] = useState(0);
 
@@ -34,9 +34,15 @@ function LightningEffect({ start, end }: LightningEffectProps) {
 
   useFrame(() => {
     // Increment progress for animation
-    if (progress < 1) {
-      setProgress((prev) => Math.min(prev + 0.02, 1));
+    if (!isAnimating || progress >= 1) {
+        if(progress >= 1) {
+            setTimeout(() => {
+                onAnimationComplete();
+            }, 500)
+        }
+        return; 
     }
+    setProgress((prev) => Math.min(prev + 0.02, 1));
 
     // Update vertices to grow lightning
     const visiblePoints = points.slice(0, Math.floor(points.length * progress));
@@ -45,41 +51,13 @@ function LightningEffect({ start, end }: LightningEffectProps) {
     }
   });
 
+
   return (
-    <line ref={ref}>
+    <primitive object={new THREE.Line()} ref={ref}>
       <bufferGeometry />
-      <lineBasicMaterial color="white" linewidth={10} />
-    </line>
-  );
-}
-
-// Define the Scene component
-export function LightningScene() {
-  const sourcePos = new THREE.Vector3(0, 0, 0); // Start from the bottom
-  const targetPos = new THREE.Vector3(0, 5, 0);  // Target cube position
-  const projectContext = useProjectContext();
-  let glowingEffect: number;
-  if(projectContext.microServicesHealthStatusContext?.isUserAuthenticationServiceUp) {
-    glowingEffect = 0.9;
-  } else {
-    glowingEffect = 0.1;
-  }
-  return (
-    <>
-      {/* Target Cube */}
-      <mesh position={targetPos}>
-        <GlowingBox position={[0, 0, 0]} glowingEffect={glowingEffect} />
-      </mesh>
-
-      {/* Lightning Effect */}
-      <LightningEffect start={sourcePos} end={targetPos} />
-
-      {/* Source (Start Point for Lightning) */}
-      <mesh position={sourcePos}>
-        <GlowingBox position={[0, 0, 0]} glowingEffect={glowingEffect}/>
-      </mesh>
-    </>
-  );
+      <lineBasicMaterial color="cyan" linewidth={2} />
+    </primitive>
+  )
 }
 
 export default LightningEffect;

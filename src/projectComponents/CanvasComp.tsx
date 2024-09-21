@@ -2,25 +2,17 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 // import { useProjectContext } from "@/contexts/ProjectContext";
-// import * as THREE from 'three';
-import { LightningScene } from "./LightningEffect";
-
+import { LightningScene, NodesPositions } from "./LightningScene";
+import { useProjectContext } from "@/contexts/ProjectContext";
+import { useState } from "react";
 
 function CanvasComp() {
-  // const projectContext = useProjectContext();
-  // let glowingEffect: number;
-  // const sourcePos = new THREE.Vector3(0, -1, 0); // Start from the bottom
-  // const targetPos = new THREE.Vector3(0, 1, 0);  // Target cube position
-
-  // if(projectContext.microServicesHealthStatusContext?.isUserAuthenticationServiceUp) {
-  //   glowingEffect = 0.9;
-  // } else {
-  //   glowingEffect = 0.1;
-  // }
+  const projectContext = useProjectContext();
+  const defaultShowLightningState = useState(false);
   return (
     <Canvas className="h-fit"> 
       {/* Ambient Light */}
-      <ambientLight intensity={0.5} />
+      <ambientLight intensity={1} />
 
       {/* Directional Light */}
       <directionalLight
@@ -57,7 +49,11 @@ function CanvasComp() {
         rotateSpeed={0.5}
       />
 
-      <LightningScene></LightningScene>
+      <LightningScene 
+        sourcePos={projectContext.lightningSceneInputs?.sourcePos || NodesPositions.CLIENT} 
+        targetPos={projectContext.lightningSceneInputs?.targetPos || NodesPositions.USERAUTHENTICATION}
+        showLightning={projectContext.lightningSceneInputs?.showLightning || defaultShowLightningState}
+      ></LightningScene>
     </Canvas>
   );
 }
