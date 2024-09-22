@@ -34,6 +34,8 @@ function SignUp() {
       try {
         const userService = userAuthController.getUserAuth();
         if (userAuthController.getUserAuth()) {
+
+          // making the axios API call through service
           const response = userService
             .signIn(signupBody)
             .then((response: object) => {
@@ -42,8 +44,8 @@ function SignUp() {
               const userData: UserCreatedDto = responseData.data;
               alert("Sign Up successful");
               // emailRef.current?.;
-              navigate("/welcome");
-              setUserContext(userData);
+              navigate("/welcome");   // navigating to welcome page
+              setUserContext(userData);  // setting Userdata in projectContext
               console.log(userData);
             })
             .catch((errorReason: AxiosError) => {
@@ -64,8 +66,8 @@ function SignUp() {
   };
 
   return (
-    <div className="h-full">
-      <h1 className="text-3xl text-slate-300 pt-10">Sign Up</h1>
+    <div className="h-full inline-flex content-center items-center align-middle">
+      <h1 className="inline-flex text-3xl text-slate-300 pt-10">Sign Up</h1>
       <P_EmptyCard>
         <Input
           ref={emailRef}

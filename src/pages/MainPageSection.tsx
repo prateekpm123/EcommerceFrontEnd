@@ -3,6 +3,7 @@ import SignUp from "./SignUp/SignUp";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Welcome from "./Welcome";
 import DefaultLandinManager from "./DefaultLandingPage";
+import { LoginPage } from "./LoginPage/LoginPage";
 
 function MainPageSection() {
   return (
@@ -10,6 +11,7 @@ function MainPageSection() {
         <BrowserRouter>
           <Routes>
             <Route path="/signup" element={<SignUp />}></Route>
+            <Route path="/login" element={<LoginPage />}></Route>
             <Route path="/welcome" element={<Welcome />}></Route>
             <Route path="/" element={<DefaultLandinManager />}></Route>
           </Routes>

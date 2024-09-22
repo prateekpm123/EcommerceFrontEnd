@@ -5,7 +5,7 @@ const PrimaryButton = (props: ButtonDataObject) => {
   const finalCss = primaryButtonCls + props.className;
   return (
     <button className={finalCss} onClick={props.onClick}>
-      {props.name}
+      {props.name || props.children}
     </button>
   );
 };

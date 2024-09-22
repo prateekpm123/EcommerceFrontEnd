@@ -1,3 +1,4 @@
+import { LoginInDto } from "@/dtos/LoginDto";
 import SignUpDto from "@/dtos/SignUpDto";
 import axios from "axios";
 
@@ -16,6 +17,15 @@ class UserAuthenticationService {
   }
 
   static baseUrl: string = "http://localhost:8080";
+
+
+  public login = async(loginData: LoginInDto) => {
+    const response = await axios.post(
+      UserAuthenticationService.baseUrl + "/auth/login",
+      loginData
+    )
+    return response;
+  }
 
 
   async signIn(signupBody: SignUpDto): Promise<object> {

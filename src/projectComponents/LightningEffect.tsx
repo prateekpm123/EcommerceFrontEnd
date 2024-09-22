@@ -46,10 +46,10 @@ function LightningEffect({ start, end }: LightningEffectProps) {
   });
 
   return (
-    <line ref={ref}>
+    <primitive object={new THREE.Line} ref={ref}>
       <bufferGeometry />
       <lineBasicMaterial color="white" linewidth={10} />
-    </line>
+    </primitive>
   );
 }
 
