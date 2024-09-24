@@ -18,28 +18,28 @@ function CanvasComp() {
   //   glowingEffect = 0.1;
   // }
   return (
-    <Canvas className="h-fit"> 
+    <Canvas className="h-full w-full"> 
       {/* Ambient Light */}
-      <ambientLight intensity={0.5} />
+      <ambientLight intensity={1} />
 
       {/* Directional Light */}
-      <directionalLight
+      {/* <directionalLight
         color="white"
         intensity={1}
         position={[10, 10, 10]}
         castShadow
         shadow-mapSize-width={1024}
         shadow-mapSize-height={1024}
-      />
+      /> */}
 
       {/* SpotLight for more dramatic lighting */}
-      <spotLight
+      {/* <spotLight
         intensity={0.7}
         position={[5, 10, 5]}
         angle={0.2}
         penumbra={1}
         castShadow
-      />
+      /> */}
 
       {/* Glow Effect */}
       <EffectComposer>
@@ -54,7 +54,7 @@ function CanvasComp() {
       <OrbitControls
         enableDamping={true}
         dampingFactor={0.1}
-        rotateSpeed={0.5}
+        rotateSpeed={0.2}
       />
 
       <LightningScene></LightningScene>
