@@ -66,9 +66,9 @@ function SignUp() {
   };
 
   return (
-    <div className="h-full inline-flex content-center items-center align-middle">
+    <div className="flex flex-col items-center h-screen w-screen p-8">
       <h1 className="inline-flex text-3xl text-slate-300 pt-10">Sign Up</h1>
-      <P_EmptyCard>
+      <P_EmptyCard className="w-1/2 h-80 p-10">
         <Input
           ref={emailRef}
           id="signEmailId"
@@ -83,7 +83,7 @@ function SignUp() {
           text="Password"
           placeHolder="Password here"
           ref={passRef}
-          className="text-slate-50"
+          className="text-slate-50 pt-4"
         ></Input>
         <PrimaryButton
           id="signUpButton"
