@@ -11,6 +11,7 @@ export const ProductComp: React.FC<IProductCompInputs> = ({ productData}) => {
             <img src="" className="h-48 w-full"></img>
             <p className="flex justify-center text-gray-200">{productData.name}</p>
             <p className="flex justify-start text-gray-200">{productData.description}</p>
+            <p className="flex pl-4 justify-start text-gray-200">{productData.price}</p>
         </div>
     )
 }
