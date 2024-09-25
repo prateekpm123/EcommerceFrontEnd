@@ -12,11 +12,11 @@
    1. [x] Create a Product card, to show images and other details
    2. [x] Get List of products from the BE, then show in Home page.
       1. [x] Make the 3d cube glow for this Service as well.
-   3. [ ] Then Create a basic navbar.
-      1. [ ] Home
-      2. [ ] search bar
-      3. [ ] Cart
-      4. [ ] User details ( section )
+   3. [x] Then Create a basic navbar.
+      1. [x] Home
+      2. [x] search bar
+      3. [x] Cart
+      4. [x] User details ( section )
    4. [ ] Then create a full fledge product page.
    5. [ ] Maybe work on the 3d part over here.
       1. [ ] Learn a bit of react 3 fiber.

@@ -33,7 +33,7 @@ function GlowingBox(inputs: GlowingBoxInput) {
           attach="material"
           color="lightblue"
           metalness={0.1}
-          roughness={0.5}
+          roughness={0.1}
         />
       </Box>
 

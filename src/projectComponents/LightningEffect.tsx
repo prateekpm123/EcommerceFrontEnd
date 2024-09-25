@@ -14,6 +14,7 @@ export interface LightningEffectProps {
 function LightningEffect({ start, end }: LightningEffectProps) {
   const ref = useRef<THREE.Line | null>(null);
   const [progress, setProgress] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
 
   // Generate random vertices between start and end points
   const generateLightningVertices = (start: THREE.Vector3, end: THREE.Vector3, segments: number = 20) => {
@@ -36,6 +37,10 @@ function LightningEffect({ start, end }: LightningEffectProps) {
     // Increment progress for animation
     if (progress < 1) {
       setProgress((prev) => Math.min(prev + 0.02, 1));
+    } else {
+      setTimeout(() => {
+        setIsVisible(false);
+      }, 200);
     }
 
     // Update vertices to grow lightning
@@ -45,12 +50,12 @@ function LightningEffect({ start, end }: LightningEffectProps) {
     }
   });
 
-  return (
+  return isVisible ? (
     <primitive object={new THREE.Line} ref={ref}>
       <bufferGeometry />
       <lineBasicMaterial color="white" linewidth={10} />
     </primitive>
-  );
+  ): null;
 }
 
 // Define the Scene component

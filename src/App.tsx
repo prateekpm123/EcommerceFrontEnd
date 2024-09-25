@@ -4,7 +4,7 @@ import NodeSection from "./pages/NodeSection";
 
 function App() {
   return (
-    <div className="bg-slate-700 h-full w-screen flex flex-col items-center text-center m-auto">
+    <div className="bg-slate-700 h-svh w-screen items-center text-center m-auto">
       <NodeSection></NodeSection>
       <MainPageSection></MainPageSection>
     </div>

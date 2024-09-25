@@ -8,12 +8,12 @@ import Home from "./Home";
 
 function MainPageSection() {
   return (
-      <div className="h-1/2 w-full bg-inherit">
+      <div className="flex flex-col h-2/3 w-full bg-inherit">
         <BrowserRouter>
           <Routes>
             <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/login" element={<LoginPage />}></Route>
-            <Route path="/welcome" element={<Home />}></Route>
+            <Route path="/home" element={<Home />}></Route>
             <Route path="/" element={<DefaultLandinManager />}></Route>
           </Routes>
         </BrowserRouter>
