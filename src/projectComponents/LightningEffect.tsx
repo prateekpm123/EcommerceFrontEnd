@@ -58,17 +58,23 @@ export function LightningScene() {
   const sourcePos = new THREE.Vector3(0, 0, 0); // Start from the bottom
   const targetPos = new THREE.Vector3(0, 5, 0);  // Target cube position
   const projectContext = useProjectContext();
-  let glowingEffect: number;
+  let userAuthGlow: number;
+  let productServiceGlow: number;
   if(projectContext.microServicesHealthStatusContext?.isUserAuthenticationServiceUp) {
-    glowingEffect = 0.9;
+    userAuthGlow = 0.9;
   } else {
-    glowingEffect = 0.1;
+    userAuthGlow = 0.1;
+  }
+  if(projectContext.microServicesHealthStatusContext?.isProductServiceUp) {
+    productServiceGlow = 0.9;
+  } else {
+    productServiceGlow = 0.1;
   }
   return (
     <>
       {/* Target Cube */}
       <mesh position={targetPos}>
-        <GlowingBox position={[0, 0, 0]} glowingEffect={glowingEffect} />
+        <GlowingBox position={[0, 0, 0]} glowingEffect={userAuthGlow} name={"User Authentication"} />
       </mesh>
 
       {/* Lightning Effect */}
@@ -76,7 +82,7 @@ export function LightningScene() {
 
       {/* Source (Start Point for Lightning) */}
       <mesh position={sourcePos}>
-        <GlowingBox position={[0, 0, 0]} glowingEffect={glowingEffect}/>
+        <GlowingBox position={[0, 0, 0]} glowingEffect={productServiceGlow} name={"Product Service"}/>
       </mesh>
     </>
   );

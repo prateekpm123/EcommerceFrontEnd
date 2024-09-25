@@ -10,8 +10,8 @@
 4. [x] Once the user is logged in direct him to a welcome page.
 5. [ ] Home page.
    1. [x] Create a Product card, to show images and other details
-   2. [ ] Get List of products from the BE, then show in Home page.
-      1. [ ] Make the 3d cube glow for this Service as well.
+   2. [x] Get List of products from the BE, then show in Home page.
+      1. [x] Make the 3d cube glow for this Service as well.
    3. [ ] Then Create a basic navbar.
       1. [ ] Home
       2. [ ] search bar

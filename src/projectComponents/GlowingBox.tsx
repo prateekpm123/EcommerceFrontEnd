@@ -1,12 +1,13 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Box } from "@react-three/drei";
+import { Box, Html } from "@react-three/drei";
 // import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
 
 interface GlowingBoxInput {
     position: [number, number, number];
     glowingEffect: number;
+    name: string;
 }
 
 function GlowingBox(inputs: GlowingBoxInput) {
@@ -24,6 +25,9 @@ function GlowingBox(inputs: GlowingBoxInput) {
   return (
     <group ref={groupRef} position={inputs.position}>
       {/* The main solid Box */}
+      <Html> 
+        <p className="text-sm text-slate-100">{inputs.name}</p>
+      </Html>
       <Box args={[1, 1]}>
         <meshStandardMaterial
           attach="material"

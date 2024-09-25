@@ -21,6 +21,7 @@ function NodeSection() {
     setInterval(() => {
       getServicesStatus();
     },100000);
+    getServicesStatus(); // calling first time;
     }, []);
   return (
     <div

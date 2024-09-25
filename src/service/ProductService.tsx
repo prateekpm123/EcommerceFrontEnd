@@ -29,16 +29,19 @@ class ProductService {
     }
   }
   
-
-
-  async ProductHealthCheck(): Promise<boolean> {
-    const response = await axios.get(
-      ProductService.baseUrl + "/auth/status"
-    )
-    if(response.status) {
-      return true;
+  async productServiceHealthCheck(): Promise<boolean> {
+    try {
+      const response = await axios.get(
+        ProductService.baseUrl + "/products/status"
+      )
+      if(response.data) {
+        return true;
+      }
+      return false;
+    } catch(e) {
+      console.log(e);
+      return false;
     }
-    return false;
   }
 }
 
