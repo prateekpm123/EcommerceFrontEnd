@@ -73,12 +73,14 @@ function SignUp() {
           ref={emailRef}
           id="signEmailId"
           name="Email"
+          text="Email"
           placeHolder="Email here"
           className="text-slate-50"
         ></Input>
         <Input
           id="signPasswordId"
           name="Password"
+          text="Password"
           placeHolder="Password here"
           ref={passRef}
           className="text-slate-50"

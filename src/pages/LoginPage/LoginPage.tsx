@@ -40,8 +40,8 @@ export const LoginPage = () => {
         <div className="flex flex-col items-center h-screen w-screen p-8">
             <P_EmptyCard className="flex h-fit w-full p-8">
                 <h1 className="text-3xl flex-block text-slate-200 pt-4 pb-6">Login Page</h1>
-                <Input placeHolder={"Email"} id={"loginEmailInput"} name={"Email"} ref={emailRef}></Input>
-                <Input placeHolder={"Password"} id={"loginEmailInput"} name={"Password"} ref={passwordRef}></Input>
+                <Input placeHolder={"Email"} id={"loginEmailInput"} name={"Email"} text={"Email"} ref={emailRef}></Input>
+                <Input placeHolder={"Password"} id={"loginEmailInput"} name={"Password"} text={"Password"} ref={passwordRef}></Input>
                 <PrimaryButton id={"loginButton"} name={"Log In"} onClick={handleLogin}></PrimaryButton>
             </P_EmptyCard>
         </div>
