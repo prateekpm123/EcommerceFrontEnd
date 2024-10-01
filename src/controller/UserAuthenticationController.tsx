@@ -1,6 +1,8 @@
 import { MicroServicesHealthStatus } from "@/models/MicroServicesHealthStatus";
 import ProductService from "@/service/ProductService";
 import UserAuthenticationService from "@/service/UserAuthenticationService";
+// import { useLightningEffect } from "@/hooks/useLightningEffect";
+// import * as THREE from 'three';
 
 class UserAuthenticationController {
   userAuth: UserAuthenticationService;
@@ -40,6 +42,9 @@ class UserAuthenticationController {
     const isAlive = await this.userAuth.userAuthenticationHealthCheck().then((result: boolean)=> {
         return result;
     })
+    // const start = new THREE.Vector3(0, 0, 0);
+    // const end = new THREE.Vector3(0, 0, 0);
+    // useLightningEffect(start, end);
     return isAlive;
   }
 

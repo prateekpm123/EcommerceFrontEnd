@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import { UserCreatedDto } from "@/dtos/UserCreatedDto";
 import { MicroServicesHealthStatus } from "@/models/MicroServicesHealthStatus";
+import { LightningEffectProps } from "@/projectComponents/LightningEffect";
 
 // Define the interface for the Project Context
 interface iProjectContext {
@@ -8,6 +9,8 @@ interface iProjectContext {
   setUserContext: (user: UserCreatedDto) => void;
   microServicesHealthStatusContext: MicroServicesHealthStatus | null;
   setMicroServicesHealthStatusContext: (status: MicroServicesHealthStatus) => void;
+  lightningEffectContext: LightningEffectProps | null;
+  setLightningEffectContext: (lightningEffect: LightningEffectProps) => void;
 }
 
 // Create the User Context
@@ -17,9 +20,14 @@ const ProjectContext = createContext<iProjectContext | undefined>(undefined);
 export const ProjectContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [userContext, setUserContext] = useState<UserCreatedDto | null>(null);
   const [microServicesHealthStatusContext, setMicroServicesHealthStatusContext] = useState<MicroServicesHealthStatus | null>(null);
+  const [lightningEffectContext, setLightningEffectContext] = useState<LightningEffectProps | null>(null);
 
   return (
-    <ProjectContext.Provider value={{ userContext, setUserContext, microServicesHealthStatusContext, setMicroServicesHealthStatusContext }}>
+    <ProjectContext.Provider value={{ 
+      userContext, setUserContext, 
+      microServicesHealthStatusContext, setMicroServicesHealthStatusContext,
+      lightningEffectContext, setLightningEffectContext
+      }}>
       {children}
     </ProjectContext.Provider>
   );

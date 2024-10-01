@@ -17,8 +17,8 @@ function GlowingBox(inputs: GlowingBoxInput) {
   // Animate the entire group for rotation
   useFrame(() => {
     if (groupRef.current) {
-      groupRef.current.rotation.x += 0.01;
-      groupRef.current.rotation.y += 0.01;
+      groupRef.current.rotation.x += 0.0005;
+      groupRef.current.rotation.y += 0.0005;
     }
   });
 

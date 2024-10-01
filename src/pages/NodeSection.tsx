@@ -23,6 +23,7 @@ function NodeSection() {
     },100000);
     getServicesStatus(); // calling first time;
     }, []);
+    
   return (
     <div
       className="h-1/3 w-full flex bg-slate-700 border-solid border-y-2 border-y-slate-500 "

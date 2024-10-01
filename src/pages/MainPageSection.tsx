@@ -8,7 +8,7 @@ import Home from "./Home";
 
 function MainPageSection() {
   return (
-      <div className="flex flex-col h-2/3 w-full bg-inherit">
+      <div className="flex flex-col h-2/3 w-full bg-inherit overflow-y-scroll">
         <BrowserRouter>
           <Routes>
             <Route path="/signup" element={<SignUp />}></Route>

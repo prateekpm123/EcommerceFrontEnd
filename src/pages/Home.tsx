@@ -1,6 +1,7 @@
 import { useProjectContext } from "@/contexts/ProjectContext";
 import React, { Suspense, useEffect, useState } from "react";
 import { ProductComp } from "./ProductComp";
+import * as THREE from "three";
 import { NavBar } from "./NavBar";
 import { ProductDto } from "@/dtos/ProductDto";
 import ProductController from "@/controller/ProductController";
@@ -16,17 +17,52 @@ const Home: React.FC = () => {
     const getAllProductData = async () => {
       const data = await productController.fetchAllProducts();
       setAllProductData(data);
+      for (let i = 0; i < 5; i++) {
+        if (i % 2 == 1) {
+          const start = new THREE.Vector3(5, -5, 10);
+          const end = new THREE.Vector3(-2, 0, 0);
+          setTimeout(() => {
+            projectData.setLightningEffectContext({ start, end });
+          }, 1000);
+        } else {
+          const start = new THREE.Vector3(5, -5, 10);
+          const end = new THREE.Vector3(-6, 0, 0);
+          setTimeout(() => {
+            projectData.setLightningEffectContext({ start, end });
+          }, 1000);
+        }
+      }
     };
     getAllProductData();
   }, []);
 
   return (
     <>
-      <div className="flex flex-col items-center h-screen w-screen">
+      <div className="flex flex-col items-center h-screen w-screen scrollable">
         <NavBar></NavBar>
         <p>Welcome {email || "Sign In"}</p>
         <div className="grid sm:grid-cols-1 sm:gap-4 md:grid-cols-3 md:gap-4 lg:grid-cols-5 justify-items-center">
           <Suspense>
+            {allProductData.map((_, i) => (
+              // Array.from({ length: 10 }).map((_, i) => (
+              <ProductComp key={i} productData={allProductData[i]} />
+            ))}
+            {allProductData.map((_, i) => (
+              // Array.from({ length: 10 }).map((_, i) => (
+              <ProductComp key={i} productData={allProductData[i]} />
+            ))}
+            {allProductData.map((_, i) => (
+              // Array.from({ length: 10 }).map((_, i) => (
+              <ProductComp key={i} productData={allProductData[i]} />
+            ))}
+            {allProductData.map((_, i) => (
+              // Array.from({ length: 10 }).map((_, i) => (
+              <ProductComp key={i} productData={allProductData[i]} />
+            ))}
+            {allProductData.map((_, i) => (
+              // Array.from({ length: 10 }).map((_, i) => (
+              <ProductComp key={i} productData={allProductData[i]} />
+            ))}
             {allProductData.map((_, i) => (
               // Array.from({ length: 10 }).map((_, i) => (
               <ProductComp key={i} productData={allProductData[i]} />
